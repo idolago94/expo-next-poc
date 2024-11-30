@@ -7,7 +7,8 @@ import Document, {
   DocumentContext,
   DocumentInitialProps,
 } from "next/document";
-import { AppRegistry } from "react-native-web";
+import { AppRegistry } from "react-native";
+
 
 // Follows the setup for react-native-web:
 // https://necolas.github.io/react-native-web/docs/setup/#root-element
