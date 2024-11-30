@@ -3,7 +3,7 @@
       "target": "esnext",
       "module": "esnext",
       "strict": true,
-      "jsx": "react",
+      "jsx": "react-jsx",
       "moduleResolution": "node",
       "allowSyntheticDefaultImports": true,
       "esModuleInterop": true,
@@ -11,7 +11,10 @@
       "forceConsistentCasingInFileNames": true,
       "isolatedModules": true,
       "resolveJsonModule": true,
-      "noEmit": true
+      "noEmit": true,
+      "paths": {
+        "@/*": ["./*"]
+      }
     },
     "include": ["**/*.ts", "**/*.tsx"],
     "exclude": ["node_modules"]
