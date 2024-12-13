@@ -1,5 +1,12 @@
 import { Children } from "react";
-import Document, { Html, Head, Main, NextScript } from "next/document";
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+} from "next/document";
 // @ts-ignore
 import { AppRegistry } from "react-native-web";
 
@@ -33,7 +40,9 @@ body {
 `;
 
 export default class MyDocument extends Document {
-  static async getInitialProps({ renderPage }) {
+  static async getInitialProps({
+    renderPage,
+  }: DocumentContext): Promise<DocumentInitialProps> {
     AppRegistry.registerComponent("main", () => Main);
     const { getStyleElement } = AppRegistry.getApplication("main");
     const page = await renderPage();
