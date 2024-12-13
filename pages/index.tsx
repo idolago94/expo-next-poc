@@ -5,6 +5,7 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text style={styles.text}>Welcome to Expo + Next.js 👋</Text>
+      <Text style={styles.text}>(With Typescript)</Text>
     </View>
   );
 }
