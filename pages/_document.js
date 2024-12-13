@@ -1,14 +1,6 @@
-import { Children, ReactElement } from "react";
-import Document, {
-  Html,
-  Head,
-  Main,
-  NextScript,
-  DocumentContext,
-  DocumentInitialProps,
-} from "next/document";
-import { AppRegistry } from "react-native";
-
+import { Children } from "react";
+import Document, { Html, Head, Main, NextScript } from "next/document";
+import { AppRegistry } from "react-native-web";
 
 // Follows the setup for react-native-web:
 // https://necolas.github.io/react-native-web/docs/setup/#root-element
@@ -29,6 +21,7 @@ html {
   -webkit-text-size-adjust: 100%;
 }
 body {
+  /* Allows you to scroll below the viewport; default value is visible */
   overflow-y: auto;
   overscroll-behavior-y: none;
   text-rendering: optimizeLegibility;
@@ -39,17 +32,10 @@ body {
 `;
 
 export default class MyDocument extends Document {
-  static async getInitialProps(
-    ctx: DocumentContext
-  ): Promise<DocumentInitialProps> {
-    // Register the main component for React Native Web
+  static async getInitialProps({ renderPage }) {
     AppRegistry.registerComponent("main", () => Main);
-
-    // Get styles from React Native Web
     const { getStyleElement } = AppRegistry.getApplication("main");
-    const page = await ctx.renderPage();
-
-    // Combine custom styles with React Native Web styles
+    const page = await renderPage();
     const styles = [
       <style
         key="react-native-style"
@@ -57,12 +43,10 @@ export default class MyDocument extends Document {
       />,
       getStyleElement(),
     ];
-
-    // Return the initial props with custom styles
     return { ...page, styles: Children.toArray(styles) };
   }
 
-  render(): ReactElement {
+  render() {
     return (
       <Html style={{ height: "100%" }}>
         <Head />
